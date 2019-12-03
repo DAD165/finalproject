@@ -1,11 +1,11 @@
-malariadata<-read.csv("MalariaData.csv")
+malariadata<-read.csv("MalariaData.csv")#read in CSV data file
 malariadata$category<-factor(malariadata$category, levels=c("control","wild type","Scorpine"))
 meanshift<-tapply(malariadata$sporozoites,malariadata$category,mean)
 sdshift<-tapply(malariadata$sporozoites,malariadata$category,sd)
-number<-tapply(malariadata$sporozoites,malariadata$category,length)
+number<-tapply(malariadata$sporozoites,malariadata$category,length)#get length of each category
 
 malariaanova<-lm(sporozoites ~ category,data= malariadata)
-testResult <- anova(malariaanova)
+testResult <- anova(malariaanova)#run ANOVA and save data to testResult
 
 #Save results of ANOVA into a text file
 cat("Comparison of mean values between mosquito groups", file = "results.txt")
